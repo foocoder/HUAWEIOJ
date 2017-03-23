@@ -79,7 +79,10 @@ int fnGetCommonStringLength( char * pLHS, char * pRHS, int nRHSLen ){
             memset( cStrPattern, 0, sizeof( cStrPattern ) );
             strncat( cStrPattern, pRHS+j, i+1 );
             if( fnKMP( pLHS, cStrPattern ) )
+            {
+                printf( "%s", cStrPattern );
                 return i+1;
+            }
         }
 
     }
@@ -100,10 +103,15 @@ int main(int argc, char *argv[])
     int nStringLength1 = strlen( cStringArr1 );
     int nStringLength2 = strlen( cStringArr2 );
 
+    /* if( nStringLength1 > nStringLength2 ) */
+    /*     printf( "%d", fnGetCommonStringLength( cStringArr1, cStringArr2, nStringLength2 ) ); */
+    /* else */
+    /*     printf( "%d", fnGetCommonStringLength( cStringArr2, cStringArr1, nStringLength1 ) ); */
+
     if( nStringLength1 > nStringLength2 )
-        printf( "%d", fnGetCommonStringLength( cStringArr1, cStringArr2, nStringLength2 ) );
+        fnGetCommonStringLength( cStringArr1, cStringArr2, nStringLength2 );
     else
-        printf( "%d", fnGetCommonStringLength( cStringArr2, cStringArr1, nStringLength1 ) );
+        fnGetCommonStringLength( cStringArr2, cStringArr1, nStringLength1 );
 
     return 0;
 }
