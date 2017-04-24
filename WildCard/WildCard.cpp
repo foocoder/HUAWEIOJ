@@ -1,36 +1,47 @@
-// ---- Program Info Start----
-//FileName:     WildCard.cpp
-//
-//Author:       Fuchen Duan
-//
-//Email:        slow295185031@gmail.com
-//
-//CreatedAt:    2017-03-23 14:22:03
-// ---- Program Info End  ----
+/*
+ *@@@@@@@@@@ File Information Start  @@@@@@@@@@
+ * @file:        WildCard.cpp
+ * @author:      Fuchen Duan
+ * @email:       slow295185031@gmail.com
+ * @github:      https://foocoder.github.com
+ * @homepage:    http://foocder.github.io
+ * @create at:   2017-04-24 14:25:57
+ * @last update: 2017-04-24 14:51:04
+ *@@@@@@@@@@ File Information Finish @@@@@@@@@@
+*/
 
-#include <stdio.h>
-#include <string.h>
+#include <iostream>
+#include <regex>
+#include <string>
 
-#define MAX_STR_LEN 100
-#define ISDIGIT( letter ) ( (letter)>='0' && (letter)<='9' )
-#define ISUPPER( letter ) ( (letter)>='A' && (letter)<='Z' )
-#define ISLOWER( letter ) ( (letter)>='a' && (letter)<='z' )
-#define ISCHAR( letter ) ( (ISDIGIT(letter) || (ISUPPER(letter)) || (ISLOWER(letter))) )
-
-bool fnCheckMatch( char cPatternString[], char cMatchString[] ){
-    int nPatternLen = strlen( cPatternString );
-    int nMatchLen   = strlen( cMatchString );
-
-
-}
+using namespace std;
 
 int main(int argc, char *argv[])
 {
-    char cPatternString[MAX_STR_LEN] = { 0 };
-    char cMatchString[MAX_STR_LEN] = { 0 };
-    scanf( "%s", cPatternString );
-    scanf( "%s", cMatchString );
-
-
+    string strPattern, strString;
+    cin>> strPattern>> strString;
+    string strPat;
+    for( auto i : strPattern ){
+        if( i == '*' ){
+            strPat += "[[:alnum:]]*";
+        }
+        else if( i== '.' ){
+            strPat += "\\.";
+        }
+        else if( i=='?' ){
+            strPat += ".";
+        }
+        else{
+            strPat += i;
+        }
+    }
+    regex reg1( strPat );
+    bool bIsMatch = regex_match( strString, reg1 );
+    if( bIsMatch ){
+        cout<<"true";
+    }
+    else{
+        cout<<"false";
+    }
     return 0;
 }
