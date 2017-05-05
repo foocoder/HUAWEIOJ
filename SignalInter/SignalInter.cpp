@@ -6,7 +6,7 @@
  * @github:      https://foocoder.github.com
  * @homepage:    http://foocder.github.io
  * @create at:   2017-04-28 16:43:24
- * @last update: 2017-04-28 17:08:00
+ * @last update: 2017-05-05 14:27:05
  *@@@@@@@@@@ File Information Finish @@@@@@@@@@
 */
 
@@ -25,6 +25,10 @@ int main(int argc, char *argv[])
     for( int i=0; i<m; ++i ){
         int nNo, nVal;
         cin>>nNo>>nVal;
+        if( m == 1 ){
+            cout<<nNo<<" "<<nVal<<endl;
+            return 0;
+        }
         if( i==0 ){
             nStart = nNo;
         }
@@ -34,13 +38,6 @@ int main(int argc, char *argv[])
         if( !nArr[nNo] )
             nArr[nNo] = nVal;
     }
-    #ifdef DEBUG
-    cout<<"Print Array Before:"<<endl;
-    for( int i=nStart; i<=nEnd; ++i ){
-        cout<<i<<","<<nArr[i]<<endl;
-    }
-    cout<<endl;
-    #endif
     int nM = nStart;
     for( int i=nStart+1; i<=nEnd; ++i ){
         if( !nArr[i] ){
